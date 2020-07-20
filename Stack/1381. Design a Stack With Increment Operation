@@ -1,0 +1,54 @@
+class CustomStack {
+public:
+    int Csize;
+    int Msize;
+    stack<int>st;
+    stack<int>temp;
+public:
+    CustomStack(int maxSize) {
+       Msize=maxSize;
+       Csize=0;
+    }
+    
+    void push(int x) {
+       if(Csize!=Msize){st.push(x);Csize++;} 
+    }
+    
+    int pop() {
+        if(st.empty())return -1;
+        int top=st.top();
+        st.pop();Csize--;
+        return top;
+    }
+    
+    void increment(int k, int val) {
+        int t=k;
+        while(!st.empty()){
+            temp.push(st.top());
+            st.pop();
+        }
+        if(Csize<=k){
+            while(!temp.empty()){
+                st.push(temp.top()+val);temp.pop();
+            }
+        }
+        else{
+            while(t--){
+                st.push(temp.top()+val);
+                temp.pop();
+            }
+            while(!temp.empty()){
+                st.push(temp.top());
+                temp.pop();
+            }
+        }
+    }
+};
+
+/**
+ * Your CustomStack object will be instantiated and called as such:
+ * CustomStack* obj = new CustomStack(maxSize);
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * obj->increment(k,val);
+ */
