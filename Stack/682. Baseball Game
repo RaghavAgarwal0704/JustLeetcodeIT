@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        stack<int>st;int s=0;
+        for(auto a:ops){
+            if(a=="C"){s-=st.top();st.pop();}
+            else if(a=="D"){s+=st.top()*2;st.push(st.top()*2);}
+            else if(a=="+"){
+                int a=st.top();st.pop();
+                int b=st.top();st.pop();
+                s=s+a+b;st.push(b);st.push(a);st.push(a+b);
+            }
+            else{
+                st.push(stoi(a));
+                s+=stoi(a);
+            }
+        }
+        return s;
+    }
+};
