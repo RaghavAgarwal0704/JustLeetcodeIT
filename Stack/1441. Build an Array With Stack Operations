@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<string> buildArray(vector<int>& target, int n) {
+        int i=1;
+        vector<string>vec;
+        for(auto a:target){
+            if(a==i){vec.push_back("Push");i++;}
+            else{
+                while(a!=i){
+                    vec.push_back("Push");
+                    vec.push_back("Pop");
+                    i++;
+                }
+                vec.push_back("Push");i++;
+            }
+        }
+        return vec;
+    }
+};
