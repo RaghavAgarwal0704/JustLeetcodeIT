@@ -1,0 +1,16 @@
+class Solution {
+public:
+    unsigned int mySqrt(int x) {
+        if(x<1)return x;
+        unsigned int b=1,ans;
+        unsigned m;
+        unsigned e=x;
+        while(b<=e){
+            m=(b+e)/2;
+            if(m==x/m)return m;
+            else if(m>x/m)e=m-1;
+            else {b=m+1;ans=m;}
+        }
+        return ans;
+    }
+};
